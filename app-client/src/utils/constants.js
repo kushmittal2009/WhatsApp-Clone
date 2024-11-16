@@ -13,8 +13,8 @@ export default (constants = {
     //     // : 'http://192.168.0.100:3000/', 
     // : 'http://localhost:3000/',
 
-    SERVER_URL: "https://watsappclone.herokuapp.com/api",
-    SOCKET_URL: "https://watsappclone.herokuapp.com/", 
+    SERVER_URL: "http://192.168.1.84:3005/api",
+    SOCKET_URL: "http://192.168.1.84:3005/", 
 
     LOGIN_USER: '/user/loginUser',
     USER_LIST: '/user/userList',
