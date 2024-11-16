@@ -26,16 +26,14 @@ jobs:
         uses: actions/setup-node@v4.1.0
         with:
           node-version: '12.14.1'
-          cache: 'yarn'
 
-      - name: Run Yarn Install
+      - name: Run npm Install
         working-directory: ./app-client
         run: |
              
              npm install -g corepack
              npm install
              npm install -g react-native-cli
-             yarn install
 
       - name: Build application
         working-directory: ./app-client
