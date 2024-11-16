@@ -13,17 +13,17 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.2.2
 
       - name: Install Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4.5.0
         with:
           java-version: 12
           distribution: adopt
           cache: gradle
           
       - name: Setup Node  
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.1.0
         with:
           node-version: '12'
           cache: 'yarn'
@@ -44,7 +44,7 @@ jobs:
              ./gradlew assembleRelease
 
       - name: Upload application
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: app
           path: android/app/build/outputs/apk/release/app-release.apk
