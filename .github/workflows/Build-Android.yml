@@ -32,8 +32,9 @@ jobs:
         run: |
              
              npm install -g corepack
-             npm install
-             npm install -g react-native-cli
+             npm install --save
+             npm install react-native --save
+             npm install -g react-native-cli --force
 
       - name: Build application
         working-directory: ./app-client
