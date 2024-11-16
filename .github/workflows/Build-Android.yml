@@ -1,0 +1,55 @@
+name: "Build Android app"
+
+on:
+  
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
+  
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 12
+          distribution: adopt
+          cache: gradle
+
+      - name: Validate Gradle wrapper
+        working-directory: ./app-client
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup Node  
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12'
+          cache: 'yarn'
+
+      - name: Run Yarn Install
+        working-directory: ./app-client
+        run: |
+             
+             npm install -g corepack
+             npm install
+             npm install -g react-native-cli
+             yarn install
+
+      - name: Build application
+        working-directory: ./app-client
+        run: |
+             cd android
+             ./gradlew assembleRelease
+
+      - name: Upload application
+        uses: actions/upload-artifact@v2
+        with:
+          name: app
+          path: android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 3
