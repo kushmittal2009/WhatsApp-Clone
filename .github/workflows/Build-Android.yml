@@ -38,7 +38,8 @@ jobs:
       - name: Build application
         working-directory: ./app-client
         run: |
-             react-native build-android --mode=release 
+             cd android
+             ./gradlew bundleRelease
       - name: Upload application
         uses: actions/upload-artifact@v4.4.3
         with:
