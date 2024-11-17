@@ -5,7 +5,8 @@ import {
   Platform,
   SafeAreaView,
   StyleSheet,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native';
 import _Divider from '../../components/_Divider';
 import constants from '../../utils/constants';
@@ -202,11 +203,11 @@ const ContactsView = ({navigation, route}) => {
                 value={name}
                 placeholder="Name"
               />
-              <Button>
+              <Button
               onPress={goToUser}
               title="Submit"
               color="#841584"
-              </Button>
+              />
           </SafeAreaView>
       </Container>
     </SafeAreaView>
