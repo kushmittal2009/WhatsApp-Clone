@@ -17,7 +17,13 @@ import EmptyComponent from '../../components/EmptyComponent';
 
 const ContactsView = ({navigation, route}) => {
   const [contacts, setContacts] = useState([]);
+  const [newuser, setNewUser] = useState([]);
+  const [userid, setUserId] = useState([]);
+  const [chatId, setChatId] = useState([]);
+  const [item1, setItem1] = useState([]);
 
+  
+  
   useEffect(() => {
     getRegisteredUsers();
   }, []);
@@ -99,7 +105,56 @@ const ContactsView = ({navigation, route}) => {
       }
     });
   };
+  async function goToUser(userName, mobile){
+    setNewUser(true);
+    contacts.forEach(async function (element){
+      if(
+        element.phoneNumber == mobile
+      ){
+      setNewUser(false);
+      setUserId(element.userId);
+      setChatId(element.chatId);
+      setItem1(element);
 
+
+      }
+    })
+    if(newuser == true){
+    loginUser(getLoginModel(userName, mobile));
+    contacts.forEach(async function (element){
+      if(
+        element.phoneNumber == mobile
+      ){
+      setUserId(element.userId);
+      setChatId(element.chatId);
+      setItem1(element);
+
+      }
+    })
+    } 
+    var userChatList = route.params.chatList;
+    let isMatch = false;
+    if (userChatList && userChatList.length > 0) {
+      for (let index = 0; index < userChatList.length; index++) {
+        const element1 = userChatList[index];
+        if (
+          element1.userId === userid ||
+          element1.userId === chatId ||
+          element1.chatId === userid ||
+          element1.chatId === chatId
+        ) {
+          navigateChatRoom(item1);
+          isMatch = true;
+          break;
+        } else {
+          let chatModel = await getContactsChatModel(item1);
+          navigateChatRoom(chatModel);
+        }
+      }
+      }
+      isMatch = false;
+    }
+  
   return (
     <SafeAreaView style={{flex: 1}}>
       <Container>
@@ -125,6 +180,9 @@ const ContactsView = ({navigation, route}) => {
             );
           }}
         />
+      </Container>
+      <Container>
+
       </Container>
     </SafeAreaView>
   );
