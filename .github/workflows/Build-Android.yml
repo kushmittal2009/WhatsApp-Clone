@@ -30,7 +30,7 @@ jobs:
         uses: nttld/setup-ndk@v1.5.0
         with:
           # Exact version to use
-          ndk-version: "21.4.7075529"
+          ndk-version: r21e
           # Add installation directory to the PATH
           add-to-path: true
           # Add installed NDK to the Android SDK
