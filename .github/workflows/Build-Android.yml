@@ -26,7 +26,17 @@ jobs:
         uses: actions/setup-node@v4.1.0
         with:
           node-version: '12.14.1'
-
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1.5.0
+        with:
+          # Exact version to use
+          ndk-version: "21.4.7075529"
+          # Add installation directory to the PATH
+          add-to-path: true
+          # Add installed NDK to the Android SDK
+          link-to-sdk: true
+          # Use the local job cache on top of the runner tool cache
+          local-cache: false
       - name: Run npm Install
         working-directory: ./app-client
         run: |
