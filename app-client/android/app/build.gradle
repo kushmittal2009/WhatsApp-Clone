@@ -136,6 +136,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
+        missingDimensionStrategy 'react-native-camera', 'general' 
         missingDimensionStrategy 'react-native-vector-icons', 'general'
         multiDexEnabled true
     }
