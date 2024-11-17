@@ -187,17 +187,19 @@ const ContactsView = ({navigation, route}) => {
       </Container>
       <Container>
           <SafeAreaView>
-              <TextInput>
+              <TextInput
+                style={styles.input}
                 onChangeText={setNumber}
                 value={number}
                 placeholder="Number"
 
-              </TextInput>
-              <TextInput>
+              />
+              <TextInput
+                style={styles.input}
                 onChangeText={setName}
                 value={name}
                 placeholder="Name"
-              </TextInput>
+              />
               <Button>
               onPress={goToUser}
               title="Submit"
@@ -208,5 +210,13 @@ const ContactsView = ({navigation, route}) => {
     </SafeAreaView>
   );
 };
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});
 
 export default ContactsView;
