@@ -17,6 +17,7 @@ import ContactsItem from './ContactsItem';
 import {getLoggedInUserList} from '../../api/apiController';
 import {getLocalData} from '../../utils/helperFunctions';
 import EmptyComponent from '../../components/EmptyComponent';
+import {loginUser} from '../../api/apiController';
 
 const ContactsView = ({navigation, route}) => {
   const [contacts, setContacts] = useState([]);
@@ -127,7 +128,7 @@ const ContactsView = ({navigation, route}) => {
       }
     })
     if(newuser == true){
-    loginUser(getLoginModel(userName, mobile));
+    await loginUser(getLoginModel(userName, mobile));
     contacts.forEach(async function (element){
       if(
         element.phoneNumber == mobile
