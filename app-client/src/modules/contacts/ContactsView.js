@@ -17,10 +17,12 @@ import EmptyComponent from '../../components/EmptyComponent';
 
 const ContactsView = ({navigation, route}) => {
   const [contacts, setContacts] = useState([]);
-  const [newuser, setNewUser] = useState([]);
-  const [userid, setUserId] = useState([]);
-  const [chatId, setChatId] = useState([]);
-  const [item1, setItem1] = useState([]);
+  const [newuser, setNewUser] = useState('');
+  const [userid, setUserId] = useState('');
+  const [chatId, setChatId] = useState('');
+  const [item1, setItem1] = useState('');
+  const [name, setName] = React.useState('');
+  const [number, setNumber] = React.useState('');
 
   
   
@@ -105,7 +107,9 @@ const ContactsView = ({navigation, route}) => {
       }
     });
   };
-  async function goToUser(userName, mobile){
+  async function goToUser(){
+    var userName = name;
+    var mobile = number;
     setNewUser(true);
     contacts.forEach(async function (element){
       if(
@@ -182,7 +186,24 @@ const ContactsView = ({navigation, route}) => {
         />
       </Container>
       <Container>
+          <SafeAreaView>
+              <TextInput>
+                onChangeText={setNumber}
+                value={number}
+                placeholder="Number"
 
+              </TextInput>
+              <TextInput>
+                onChangeText={setName}
+                value={name}
+                placeholder="Name"
+              </TextInput>
+              <Button>
+              onPress={goToUser}
+              title="Submit"
+              color="#841584"
+              </Button>
+          </SafeAreaView>
       </Container>
     </SafeAreaView>
   );
