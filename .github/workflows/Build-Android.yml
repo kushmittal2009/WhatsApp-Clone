@@ -51,7 +51,7 @@ jobs:
         run: |
              cd android
              ./gradlew assembleRelease
-             ls /app/build/outputs/apk
+             ls app/build/outputs/apk
       - name: Upload application
         uses: actions/upload-artifact@v4.4.3
         with:
