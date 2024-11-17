@@ -4,6 +4,8 @@ import {
   PermissionsAndroid,
   Platform,
   SafeAreaView,
+  StyleSheet,
+  TextInput
 } from 'react-native';
 import _Divider from '../../components/_Divider';
 import constants from '../../utils/constants';
