@@ -21,7 +21,7 @@ import {loginUser} from '../../api/apiController';
 
 const ContactsView = ({navigation, route}) => {
   const [contacts, setContacts] = useState([]);
-  const [newuser, setNewUser] = useState('');
+  const [newuser, setNewUser] = useState();
   const [userid, setUserId] = useState('');
   const [chatId, setChatId] = useState('');
   const [item1, setItem1] = useState('');
