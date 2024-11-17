@@ -46,15 +46,29 @@ jobs:
              npm install react-native --save
              npm install -g react-native-cli --force
 
-      - name: Build application
+      - name: Build Release
         working-directory: ./app-client
         run: |
              cd android
              ./gradlew assembleRelease
              ls app/build/outputs/apk
-      - name: Upload application
+      - name: Upload Release
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: app
+          name: release
           path: app-client/android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 3
+          
+      - name: Build Debug
+        working-directory: ./app-client
+        run: |
+            react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+            cd android
+            ./gradlew assembleDebug
+            
+      - name: Upload Debug
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: debug
+          path: app-client/android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 3
